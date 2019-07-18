@@ -1,0 +1,6 @@
+# Specifies intentionally untracked files to ignore when using Git
+
+assets/node_modules/
+assets/stylus/
+assets/gulpfile.js
+assets/package.json
