@@ -4,13 +4,43 @@
 
 // =========== FUNCTIONS GENERALS ===================
 //PRELOAD
+
+
+
 function load() {
   var preloader = document.getElementById("preload");
   setTimeout(function() {
     preloader.classList.add("close");
   }, 1000);
+
+  //SLIDER INIT  
+  showDivs(slideIndex);
+  
+
 }
 window.onload = load;
+
+
+//SLIDER
+var slideIndex = 1;
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+function showDivs(n) {
+  var i;
+  var style;
+  var x = document.getElementsByClassName("item-slides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     // x[i].style.display = "none";
+     x[i].classList.remove("active");     
+  }
+  // x[slideIndex-1].style.display = "block"; 
+  x[slideIndex-1].classList.add("active");
+}
+// document.querySelectorAll('.item-slides')[0].style.display = "block";
+
 
 
 //FIXED NAV
@@ -37,7 +67,7 @@ function openNav() {
       classes.splice(i, 1);
     else 
       classes.push("open");
-      element.className = classes.join(" "); 
+      element.className = classes.join(""); 
   }
 }
 
@@ -60,29 +90,8 @@ function loadDataJson(arr) {
   var i;
   for(i = 0; i < arr.length; i++) {
     out += '<li class="item-slides"><h1>' + arr[i].text + '</h1><img src="' + 
-    arr[i].url + '"></li>';
+    arr[i].url + '"><div class="imgMovile" style="background-image: url(' + 
+    arr[i].url + ');"></div></li>';
   }
   document.getElementById("dataImages").innerHTML = out;
 }
-
-
-
-//SLIDER INIT
-var slideIndex = 1;
-showDivs(slideIndex);
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("item-slides");
-  if (n > x.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";
-     x[i].classList.remove("active");     
-  }
-  x[slideIndex-1].style.display = "block"; 
-  x[slideIndex-1].classList.add("active");
-}
-// document.querySelectorAll('.item-slides')[0].style.display = "block";
